@@ -1,22 +1,18 @@
-const main = function() {
+const getLocation = async function() {
+	const data = {};
 	if ('geolocation' in navigator) {
 		console.log('geolocation available');
-		getLocation();
+		navigator.geolocation.getCurrentPosition(function(position) {
+			latitude = position.coords.latitude;
+			longitude = position.coords.longitude;
+			displayLocation(latitude, longitude);
+			data.lat = latitude;
+			data.lon = longitude;
+			sendRequest(data);
+		});
 	} else {
 		console.log('geolocation unavailable');
 	}
-};
-
-const getLocation = async function() {
-	const data = {};
-	navigator.geolocation.getCurrentPosition(function(position) {
-		latitude = position.coords.latitude;
-		longitude = position.coords.longitude;
-		displayLocation(latitude, longitude);
-		data.lat = latitude;
-		data.lon = longitude;
-		sendRequest(data);
-	});
 };
 
 const sendRequest = function(data) {
@@ -28,7 +24,7 @@ const sendRequest = function(data) {
 		body: JSON.stringify(data)
 	};
 	fetch('/api', options).then(async (response) => console.log(await response.json()));
-	fetch('https://pepinieradenuci.ro/wp-json').then(async (response) => console.log(await response.json()));
+	// fetch('https://pepinieradenuci.ro/wp-json').then(async (response) => console.log(await response.json()));
 };
 
 const displayLocation = function(lat, lon) {
@@ -36,4 +32,14 @@ const displayLocation = function(lat, lon) {
 	document.getElementById('longitude').textContent = lon;
 };
 
-window.addEventListener('load', main());
+const getElem = function(id) {
+	return document.getElementById(id);
+};
+
+const main = function() {
+	var geolocate = getElem('geolocate');
+	console.log(geolocate);
+	geolocate.addEventListener('click', getLocation);
+};
+
+window.addEventListener('load', main);
