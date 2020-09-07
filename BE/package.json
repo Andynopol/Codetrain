@@ -1,0 +1,22 @@
+{
+  "name": "codetrain",
+  "version": "1.0.0",
+  "description": "description",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andynopol/Codetrain.git"
+  },
+  "author": "Nechita Dinu-Andrei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Andynopol/Codetrain/issues"
+  },
+  "homepage": "https://github.com/Andynopol/Codetrain#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
