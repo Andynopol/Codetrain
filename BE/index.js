@@ -20,3 +20,14 @@ app.post( '/api', ( req, res ) => {
 	console.log( req.body );
 	res.json( data );
 } );
+
+app.get('/api', (req, res)=>{
+	database.find({}, (err, data)=>{
+		if(err){
+			res.json({'status':'Internal Error'});
+			res.end();
+			return;
+		}
+		res.json(data);
+	});
+});

@@ -1,6 +1,6 @@
-const getLocation = async function() {
-	// console.log( getText( 'field' ) );
+const getLocation = async function(img) {
 	const data = {};
+	data.img = img;
 	if ('geolocation' in navigator) {
 		console.log('geolocation available');
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -55,11 +55,25 @@ const getElem = function(id) {
 // 	} );
 // }
 
-const main = function() {
+
+const main = function(video) {
 	var geolocate = getElem('geolocate');
-	console.log(geolocate);
-	geolocate.addEventListener('click', getLocation);
+	geolocate.addEventListener('click', function(){
+		video.loadPixels();
+		const image64 = video.canvas.toDataURL();
+		getLocation(image64);
+	});
 	// linkbehavior();
 };
 
-window.addEventListener('load', main);
+const setup = function(){
+	noCanvas();
+  	const video = createCapture(VIDEO);
+	video.size(240, 160);
+	main(video);
+}
+
+window.setup = setup;
+
+
+// window.addEventListener('load', setup);
