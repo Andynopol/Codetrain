@@ -1,4 +1,5 @@
 const getLocation = async function() {
+	// console.log( getText( 'field' ) );
 	const data = {};
 	if ('geolocation' in navigator) {
 		console.log('geolocation available');
@@ -8,11 +9,16 @@ const getLocation = async function() {
 			displayLocation(latitude, longitude);
 			data.lat = latitude;
 			data.lon = longitude;
+			data.text = getText('field');
 			sendRequest(data);
 		});
 	} else {
 		console.log('geolocation unavailable');
 	}
+};
+
+const getText = function(id) {
+	return document.getElementById(id).value;
 };
 
 const sendRequest = function(data) {
@@ -36,10 +42,24 @@ const getElem = function(id) {
 	return document.getElementById(id);
 };
 
+// const linkbehavior = function () {
+// 	const link1 = document.getElementById( 'link1' );
+// 	const link2 = document.getElementById( 'link2' );
+
+// 	link1.addEventListener( 'click', function () {
+// 		this.classList.add( 'color2' );
+// 	} );
+
+// 	link2.addEventListener( 'click', function () {
+// 		this.classList.add( 'color3' );
+// 	} );
+// }
+
 const main = function() {
 	var geolocate = getElem('geolocate');
 	console.log(geolocate);
 	geolocate.addEventListener('click', getLocation);
+	// linkbehavior();
 };
 
 window.addEventListener('load', main);

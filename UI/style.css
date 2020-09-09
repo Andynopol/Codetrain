@@ -1,3 +1,47 @@
 h1 {
     color: red;
 }
+
+.row {
+    display: flex;
+}
+
+#field {
+    margin-left: 5px;
+}
+
+.dissable {
+    visibility: hidden;
+    opacity: 0;
+    user-select: none;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    user-select: default;
+}
+
+.link {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 200px;
+    left: 100px;
+}
+
+#link1 {
+    background-color: red;
+}
+
+#link2 {
+    background-color: green;
+}
+
+.color2 {
+    background: purple !important;
+}
+
+.color3 {
+    background: orange !important;
+}
