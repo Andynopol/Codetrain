@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/Andynopol/Codetrain#readme",
   "dependencies": {
+    "Name": "../BE/name.js",
+    "buffer-image-size": "^0.6.4",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mime": "^2.4.6",
     "nedb": "^1.8.0"
   }
 }
