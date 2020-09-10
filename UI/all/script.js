@@ -1,6 +1,14 @@
 const getData = async function(){
+    // const options = {
+	// 	method: 'POST',
+	// 	headers: {
+	// 		'Content-Type': 'application/json'
+	// 	},
+	// 	body: ""
+	// };
     const response = await fetch('/api');
     const data = await response.json();
+    console.log(await data);
     return await data;
 }
 
@@ -38,7 +46,7 @@ const generate = function(root, data){
 
         if(item.img){
             img = document.createElement('img');
-            img.src = item.img;
+            img.src = item.img.src;
             img.width=240;
         }
         

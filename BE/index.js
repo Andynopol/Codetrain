@@ -1,12 +1,7 @@
 const express = require( 'express' );
 const Datastore = require( 'nedb' );
-const Name = require('./name');
-const fs = require('fs');
-const uploads = './uploads';
-const imgSizeOf = require('buffer-image-size');
-
-
-
+const base64_manager = require( './lib/base64_manager' );
+const File = require( './lib/file' );
 
 const app = express();
 const database = new Datastore( 'data.db' );
@@ -21,41 +16,22 @@ app.use( express.json( {
 
 app.post( '/api', ( req, res ) => {
 	const data = req.body;
-	const base64Image = data.img;
-	const matches = base64Image.match( /^data:([A-Za-z-+\/]+);base64,(.+)$/ );
-	if ( matches.length !== 3 ) {
-		console.log( 'INVALID' )
-	}
-	const img = {};
-	img.type = matches[ 1 ];
-	img.data = new Buffer.from(matches[ 2 ], 'base64');
-
-	const extension = img.type.substr(img.type.length-3, img.type.length-1);
-	img.name = `${Name.makeid()}.${extension}`;
-	
-	const path = `${uploads}/${img.name}`;
-	
-
-    fs.writeFile(path, img.data, function(err){
-		if(err)
-		{
-			console.log(err.message);
-		}
-	});
-	
-
-	data.img = {path: path,name: img.name};
-
-
-
+	const img = base64_manager.decode( data.img );
+	console.log( "Writing..." );
+	File.write( img.path, img.data );
+	data.img = {
+		path: img.path,
+		name: img.name,
+		type: img.type
+	};
 	const timestamp = Date.now();
 	data.timestamp = timestamp;
 	database.insert( data );
-	// console.log( req.body );
 	res.json( data );
 } );
 
 app.get( '/api', ( req, res ) => {
+	// console.log('getting');
 	database.find( {}, ( err, data ) => {
 		if ( err ) {
 			res.json( {
@@ -64,6 +40,7 @@ app.get( '/api', ( req, res ) => {
 			res.end();
 			return;
 		}
+		base64_manager.convert( data );
 		res.json( data );
 	} );
 } );

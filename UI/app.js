@@ -61,6 +61,7 @@ const main = function(video) {
 	geolocate.addEventListener('click', function(){
 		video.loadPixels();
 		const image64 = video.canvas.toDataURL();
+		console.log(image64);
 		getLocation(image64);
 	});
 	// linkbehavior();
