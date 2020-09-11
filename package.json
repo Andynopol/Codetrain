@@ -1,6 +1,9 @@
 {
   "name": "codetrain",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.6.0"
+  },
   "description": "description",
   "main": "index.js",
   "scripts": {
