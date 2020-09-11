@@ -36,7 +36,6 @@ app.post( '/api', ( req, res ) => {
 } );
 
 app.get( '/api', ( req, res ) => {
-	// console.log('getting');
 	database.find( {}, ( err, data ) => {
 		if ( err ) {
 			res.json( {
