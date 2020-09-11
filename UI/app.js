@@ -30,7 +30,6 @@ const sendRequest = function(data) {
 		body: JSON.stringify(data)
 	};
 	fetch('/api', options).then(async (response) => console.log(await response.json()));
-	const position = {lat: data.lat,lon:data.lon};
 	fetch(`/weather/${data.lat},${data.lon}`).then(async (response) => console.log(await response.json()));
 };
 
@@ -62,7 +61,7 @@ const main = function(video) {
 	geolocate.addEventListener('click', function(){
 		video.loadPixels();
 		const image64 = video.canvas.toDataURL();
-		console.log(image64);
+		// console.log(image64);
 		getLocation(image64);
 	});
 	// linkbehavior();

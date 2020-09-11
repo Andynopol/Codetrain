@@ -4,6 +4,8 @@ const base64_manager = require( './lib/base64_manager' );
 const File = require( './lib/file' );
 const fetch = require('node-fetch');
 
+require('dotenv').config();
+
 const app = express();
 const database = new Datastore( 'data.db' );
 database.loadDatabase();
@@ -50,7 +52,7 @@ app.get('/weather/:position', async (req, res)=>{
 	const position = req.params.position.split(',');
 	const lat = position[0];
 	const lon = position[1];
-	const key = '4c0abcaf070fe2cc445b7ce41e8df18f';
+	const key = process.env.API_KEY;
 	const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
 	const api_res = await fetch(url);
 	res_json = await api_res.json();
