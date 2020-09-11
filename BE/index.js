@@ -10,7 +10,9 @@ const app = express();
 const database = new Datastore( 'data.db' );
 database.loadDatabase();
 
-app.listen( 3000, () => console.log( 'I am listening' ) );
+const PORT = process.env.port || 3000;
+
+app.listen( PORT, () => console.log( 'I am listening' ) );
 
 app.use( express.static( '../UI' ) );
 app.use( express.json( {
