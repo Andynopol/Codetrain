@@ -30,7 +30,8 @@ const sendRequest = function(data) {
 		body: JSON.stringify(data)
 	};
 	fetch('/api', options).then(async (response) => console.log(await response.json()));
-	// fetch('https://pepinieradenuci.ro/wp-json').then(async (response) => console.log(await response.json()));
+	const position = {lat: data.lat,lon:data.lon};
+	fetch(`/weather/${data.lat},${data.lon}`).then(async (response) => console.log(await response.json()));
 };
 
 const displayLocation = function(lat, lon) {
