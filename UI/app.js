@@ -42,20 +42,6 @@ const getElem = function(id) {
 	return document.getElementById(id);
 };
 
-// const linkbehavior = function () {
-// 	const link1 = document.getElementById( 'link1' );
-// 	const link2 = document.getElementById( 'link2' );
-
-// 	link1.addEventListener( 'click', function () {
-// 		this.classList.add( 'color2' );
-// 	} );
-
-// 	link2.addEventListener( 'click', function () {
-// 		this.classList.add( 'color3' );
-// 	} );
-// }
-
-
 const main = function(video) {
 	var geolocate = getElem('geolocate');
 	geolocate.addEventListener('click', function(){
@@ -75,6 +61,3 @@ const setup = function(){
 }
 
 window.setup = setup;
-
-
-// window.addEventListener('load', setup);
