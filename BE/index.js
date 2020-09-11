@@ -14,7 +14,7 @@ const PORT = process.env.port || 3000;
 
 app.listen( PORT, () => console.log( 'I am listening' ) );
 
-app.use( express.static( './UI' ) );
+app.use( express.static( '../UI' ) );
 app.use( express.json( {
 	limit: '1mb'
 } ) );
